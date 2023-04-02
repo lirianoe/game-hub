@@ -1,16 +1,19 @@
 import { HStack, Image, Switch, Text, useColorMode } from '@chakra-ui/react'
 import logo from '../assets/logo.webp'
-import React from 'react'
-import { color } from 'framer-motion'
+import SearchInput from './SearchInput'
 
-const Navbar = () => {
+interface Props {
+    onSearch: (searchText: string) => void;
+  }
+
+const Navbar = ({ onSearch}: Props) => {
 
     const {colorMode, toggleColorMode} = useColorMode()
 
   return (
     <HStack>
         <Image src={logo} boxSize='60px'/>
-        <Text>Navbar</Text>
+        <SearchInput onSearch={onSearch} />
         <HStack>
             <Switch isChecked={colorMode === 'dark'} onChange={toggleColorMode}/>
             <Text>{colorMode === 'dark' ? 'Dark' : 'Light'} Mode</Text>
